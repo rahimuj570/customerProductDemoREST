@@ -7,6 +7,7 @@ import com.productcustomerdemo.ProductCustomerDemo.repository.ProductsRepo;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,7 +52,11 @@ public class ProductsController {
     }
 
     @PutMapping("/{id}")
-    public ProductDto updateProd(@RequestBody ProductDto data, @PathVariable Long id) {
+    public ProductDto updateProd(
+            @RequestBody ProductDto data, @PathVariable Long id,
+            Principal principal
+    ) {
+
         ProductDto dto = data;
         dto.setId(id);
         return productsRepo.save(dto.toEntity()).toDto();
