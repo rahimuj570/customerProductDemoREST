@@ -14,6 +14,8 @@ public class Products {
     private int price;
     private String description;
     @ManyToOne
+    private Customer customer;
+    @ManyToOne
     private Categories categories;
 
     @Transient

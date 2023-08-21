@@ -1,6 +1,7 @@
 package com.productcustomerdemo.ProductCustomerDemo.dto;
 
 import com.productcustomerdemo.ProductCustomerDemo.model.Categories;
+import com.productcustomerdemo.ProductCustomerDemo.model.Customer;
 import com.productcustomerdemo.ProductCustomerDemo.model.Products;
 import lombok.Data;
 
@@ -10,12 +11,14 @@ public class ProductDto {
     private String title;
     private int price;
     private String description;
+    private Long customerId;
     private Long categoryId;
 
     public Products toEntity() {
         Products products = new Products();
         products.setId(id);
         products.setCategories(new Categories(categoryId));
+        products.setCustomer(new Customer(customerId));
         products.setTitle(title);
         products.setPrice(price);
         products.setDescription(description);
@@ -26,6 +29,7 @@ public class ProductDto {
     ProductDto dto=new ProductDto();
     dto.setId(entity.getId());
     dto.setCategoryId(entity.getCategories().getId());
+    dto.setCustomerId(entity.getCustomer().getId());
     dto.setDescription(entity.getDescription());
     dto.setTitle(entity.getTitle());
     dto.setPrice(entity.getPrice());
